@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from decouple import config
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -32,9 +33,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&mc)46v2ih4pi*%$3=st*rpgglujtsx=f4@8^58-w+0e*ix51&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+##DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+DEBUG = config('DEBUG', default=True, cast=bool)
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sdp486.herokuapp.com', config('SERVER', default='127.0.0.1')]
 
 
 # Application definition
@@ -52,6 +56,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

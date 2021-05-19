@@ -1,0 +1,16 @@
+asgiref
+autopep8
+dj-database-url
+Django==3.2.3
+django-binary-database-files
+gunicorn
+mysqlclient
+pycodestyle
+python-dateutil
+python-decouple
+pytz
+six
+sqlparse
+toml
+Unipath
+whitenoise
